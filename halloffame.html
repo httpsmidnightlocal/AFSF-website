@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hall of Fame | AFSF</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #121212; /* Dark background */
+      color: #e0e0e0;
+      line-height: 1.7;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ===================== NAVBAR ===================== */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(5,7,12,0.65);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .logo { font-weight: 800; letter-spacing: 2px; font-size: 1.5rem; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav li {
+      position: relative;
+      font-size: 0.95rem;
+      padding-bottom: 16px;
+      cursor: pointer;
+    }
+
+    nav li::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #38bdf8;
+      transition: width 0.3s ease;
+    }
+
+    nav li:hover::after { width: 100%; }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 8px;
+      background: #0b0f14;
+      border-radius: 14px;
+      padding: 12px 0;
+      min-width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown-content:hover {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 20px;
+      color: #d1d5db;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background: rgba(56,189,248,0.1);
+      color: #38bdf8;
+    }
+
+    /* ===================== HEADER ===================== */
+    header {
+      background: #0d1b2a;
+      color: #fff;
+      padding: 160px 2rem 80px; /* extra padding for fixed navbar */
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: #cbd5f5;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 0 1rem;
+    }
+
+    .hof-member {
+      display: flex;
+      gap: 1.5rem;
+      background: #1e1e1e;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+      transition: transform 0.2s ease;
+    }
+
+    .hof-member:hover {
+      transform: scale(1.02);
+      box-shadow: 0 4px 20px rgba(255,255,255,0.2);
+    }
+
+    .hof-member img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #0d1b2a;
+    }
+
+    .hof-details h2 { color: #ffd700; }
+    .hof-details h3 { color: #aaaaaa; }
+    .hof-details p { color: #e0e0e0; }
+
+    footer {
+      background: #0d1b2a;
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 0;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .hof-member {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hof-member img { margin-bottom: 1rem; }
+      nav { padding: 20px 30px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">AFSF</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dropdown">
+        <a href="#">Sub-Divisions</a>
+        <div class="dropdown-content">
+          <a href="iat.html">Internal Audit Team</a>
+          <a href="honor.html">Honor Guards</a>
+          <a href="tnt.html">Tactical Neutralization Team</a>
+        </div>
+      </li>
+      <li><a href="quota.html">Quota & Ranks</a></li>
+      <li><a href="directorate.html">Directorate</a></li>
+      <li><a href="halloffame.html">Hall of Fame</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+    <header>
+        <h1>AFSF Hall of Fame</h1>
+        <p>Celebrating the outstanding former Directorate members of AFSF who have demonstrated exceptional service, dedication, and achievements within the division. Their contributions will not be forgotten</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Lava_Cookie8 -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-0471FE24D7DDEAE4E8BCC37A90974A92-Png/720/720/Avatar/Webp/noFilter" alt="Lava_Cookie8">
+            <div class="hof-details">
+                <h2>Lava_Cookie8</h2>
+                <h3>Former UCO / COL</h3>
+                <p>Lava was the former CO of SERT. He was a very nice, active guy in his time and would always do his best for SERT to make it better. His work for SERT won't be forgotten, I hope he has a good time in retirement. I know he will be missed by majority of everyone here.</p>
+            </div>
+        </div>
+
+        <!-- minhman6823 -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-F0203F85D67549402FCDA5AE896A9257-Png/720/720/Avatar/Webp/noFilter" alt="minhman6823">
+            <div class="hof-details">
+                <h2>minhman6823</h2>
+                <h3>Former Inspector General / Commander</h3>
+                <p>Minhman was the former overseer of IAT, he was also the UCO of the old ODC as well. Minhman was a nice, funny guy who would always try to put AFSF in the right direction. His leadership helped push AFSF into what it is today and without him IAT wouldn’t be here at all. I hope that he has a nice time in other sub divisions, he won’t be forgotten here.</p>
+            </div>
+        </div>
+
+        <!-- panterblack123 -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-CB050B26A402EAFE6BB5BFCC709F0792-Png/720/720/Avatar/Webp/noFilter" alt="panterblack123">
+            <div class="hof-details">
+                <h2>panterblack123</h2>
+                <h3>Former Secretary General / Director</h3>
+                <p>AFSF's first ever Commanding Officer, Panterblack123, is someone I really admire. As some of you may know, he is extremely busy in his life as he has his own family to take care of. But yet, that did not stop him from his dedication towards AFSF. AFHC, especially Panter have contributed a lot to set up AFSF and get us open and running. I find it impressive considering that he also needs to lead other things as well. Without panter's contribution, AFSF and all of us wouldn't be here. With that, AFSF wish him the best in his life and in USAF. 🫡</p>
+            </div>
+        </div>
+
+        <!-- Foxlimsuper200111 -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-AFD756438C174DCC7410FC6BCE7401A8-Png/720/720/Avatar/Webp/noFilter" alt="Foxlimsuper200111">
+            <div class="hof-details">
+                <h2>Foxlimsuper200111</h2>
+                <h3>Former UCO / COL</h3>
+                <p>Fox was the former CO of the Logistics Department and before that, the CO of IAT. He has been in AFSF 2x, and used to be command while Panter was CO. He was one of the most active and one of the most well known individual’s in AFSF. The streets won’t forget Fox. O7.</p>
+            </div>
+        </div>
+
+        <!-- sufyan17122 -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-D9BA1DA412BD0C7E61D45BBD18BBC99F-Png/720/720/Avatar/Webp/noFilter" alt="sufyan17122">
+            <div class="hof-details">
+                <h2>sufyan17122</h2>
+                <h3>Former DD</h3>
+                <p>Sufy was one of the most oldest, most experienced and one of the most known individual to ever touch AFSF. In the earlier days of AFSF, he helped set up and develop AFSF to what it is today. A natural born leader, sufy contributed a lot of his time to AFSF and worked closely with oracle to shape the future of AFSF with leadership, units, ranks etc.</p>
+            </div>
+        </div>
+
+        <!-- @~Kitu_Kalushi~ -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-E83C2DE60098D4C360D1702AAA2519DA-Png/720/720/Avatar/Webp/noFilter" alt="@~Kitu_Kalushi~">
+            <div class="hof-details">
+                <h2>@~Kitu_Kalushi~</h2>
+                <h3>Former Commander</h3>
+                <p>Although Iampro wasn't one of the most active AFSF members to the end, she was still a great help with the logistics field for AFSF. She helped with logging, hosting events, maintaining consistent activity at one point and just a great help with AFSF. I can remember when she was a part of the old Training Department and would host a lot. With over 3,714 message, it just shows how active she was in the AFSF community. It's sad to see Iampro go and I am happy to announce that she will go down in AFSF history as one of the best Commanders.</p>
+            </div>
+        </div>
+
+        <!-- jett0nia -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-548F6E2F3148ED9BC535EA17D880B22D-Png/720/720/Avatar/Webp/noFilter" alt="jett0nia">
+            <div class="hof-details">
+                <h2>jett0nia</h2>
+                <h3>Former DD</h3>
+                <p>Jetton was the Commander of AFSF from the third of Feb in 2023. He achieved the rank of Commander in the sixteenth of June, and finally the Deputy Director somewhere between July to September as records showed. He was a hard-working member of AFSF, and having created the recent EG unit, he was given a lot of adulation. In the second generation of AFSF, when panter was still the Director of AFSF, he helped many people with their needs and questions and created former units like AFSW and SERT. Even if they weren't very poplar, he was very active and hosted a memorable amount of flash inspections. He updated the old documents made by former Directorate members, and was given many medals for his hard work. He was friendly and always active. Unfortunately, with the downfall of AFSF’s activeness and the former elite unit disbanded, his resolve to continue leading this division was crushed and he discharged. Despite the challenges he faced these recent months, his legacy as a hardworking and respected Directorate member of the AFSF will endure.</p>
+            </div>
+        </div>
+
+        <!-- X_orph556 -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-F20799FE25021DEEDC9F3CAD5F91F35C-Png/720/720/Avatar/Webp/noFilter" alt="X_orph556">
+            <div class="hof-details">
+                <h2>X_orph556</h2>
+                <h3>Former Director</h3>
+                <p>Xorph will be relevantly known as an individual who has shown the expectations of a leader. Me and xorph have essentially been through it all, becoming the 2ic and above within the Elite Guard (EG) before it changed to TRF. I was not here while he had ranked up to directorate, however Xorph was active as hell and a great person to be around during his occupation. He will be remembered in my heart as the best Director so far in AFSF's name.</p>
+            </div>
+        </div>
+
+        <!-- udhruv -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-3DF1D93EFBB513FA2B8F20C2A0643DB1-Png/720/720/Avatar/Webp/noFilter" alt="udhruv">
+            <div class="hof-details">
+                <h2>udhruv</h2>
+                <h3>Former DD</h3>
+                <p>Udh was the former Deputy Director of AFSF. He has worked hard over the years it is sad to see him gone all because of one thing... He is honestly one of the best DD's. His activity kind of ruins it but he had a lot of passion for the position that he has managed to get to. He has helped me out over the few months I have been here. He stayed here during the rough times when EG got disbanded and AFSF was launched into a plunge of darkness, barely active. But with him being Deputy Director and also command before it is safe to say he has revived AFSF. O7 He will never be forgotten.</p>
+            </div>
+        </div>
+
+        <!-- Bowling_bed -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-FDF16F52229D21777667797C3CA82B2D-Png/720/720/Avatar/Webp/noFilter" alt="Bowling_bed">
+            <div class="hof-details">
+                <h2>Bowling_bed</h2>
+                <h3>Former DD</h3>
+                <p>Bowling_bed was the most previous former Deputy Director of AFSF. When I rejoined AFSF, he happened to be the CO of TRF, doing everything to the best of his ability. Somehow, I passed him in the long run, but during his time as a DD/COL, he has helped me create docs, host inspections, and many more things. we send him off today as he was recently banned.</p>
+            </div>
+        </div>
+
+        <!-- apexbattles -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-71A7A6D228202EC6F65344B7926D60C9-Png/720/720/Avatar/Webp/noFilter" alt="apexbattles">
+            <div class="hof-details">
+                <h2>apexbattles</h2>
+                <h3>Former ADD</h3>
+                <p>Apexbattles was an extremely active AFSF HC and was a previous former Assistant Deputy Director a few months ago. He made many notable changes to AFSF that were never overlooked and were recognized by all of AFSF. He was the overseer of the unit IAT (internal audit team) before its operations unfortunately ceased. He hosted, led, and attended many inspections before, made important documents, and single-handedly somehow managed every member's quota here as a Quota Manager. He is now retired and we wish him the best of luck with his future endeavors.</p>
+            </div>
+        </div>
+
+        <!-- Brandon_Lovesroblox2 -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-8F41E5031B5804CF498AD83D4AA44EC5-Png/720/720/Avatar/Webp/noFilter" alt="Brandon_Lovesroblox2">
+            <div class="hof-details">
+                <h2>Brandon_Lovesroblox2</h2>
+                <h3>Former Director</h3>
+                <p>Brandon was a great leader during when he was Director, he lead AFSF great multiple times trying and trying again to improve AFSF, but ultimately failed due to its past. With his 2nd time here he led it well, yet again. Brandon has shown in times of struggle that he can rise, even though there was times when he was inactive due to college exams, he still showed support, he still showed leadership. It is truly devastating that he had to leave AF and AFSF to pursue his career in real life.</p>
+            </div>
+        </div>
+
+        <!-- Equioliox -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-AE2CB8938A21179A009E890EBBD92260-Png/720/720/Avatar/Webp/noFilter" alt="Equioliox">
+            <div class="hof-details">
+                <h2>Equioliox</h2>
+                <h3>Former CSF</h3>
+                <p>Equioliox served as the first Commandant since the re-opening of AFSF, around five months ago. Through his strong leadership, he guided AFSF through countless inspections, sub-wides, and major events. AFSF got out of its roughest points with him and began to get stronger and stronger.</p>
+            </div>
+        </div>
+
+        <!-- Ariistarx -->
+        <div class="hof-member">
+            <img src="https://tr.rbxcdn.com/30DAY-Avatar-C7371327A0054C7BB3CA004331B43263-Png/720/720/Avatar/Webp/noFilter" alt="Ariistarx">
+            <div class="hof-details">
+                <h2>Ariistarx</h2>
+                <h3>Former CSM</h3>
+                <p>Ariistarx was known for being a competent and reliable member of AFSF. Serving as Command Sergeant Major, he oversaw training, maintained discipline, and mentored new members. His contributions ensured that AFSF stayed organized and professional during his tenure.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2025 AFSF Hall of Fame.
+    </footer>
+</body>
+</html>

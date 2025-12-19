@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | AFSF</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, #111827, #05070c 60%);
+      color: #e5e7eb;
+      line-height: 1.7;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(5,7,12,0.65);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .logo { font-weight: 800; letter-spacing: 2px; font-size: 1.5rem; }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 32px;
+    }
+
+    nav li {
+      position: relative;
+      font-size: 0.95rem;
+      padding-bottom: 16px;
+      cursor: pointer;
+    }
+
+    nav li::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #38bdf8;
+      transition: width 0.3s ease;
+    }
+
+    nav li:hover::after { width: 100%; }
+
+    .dropdown-content {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      margin-top: 8px;
+      background: #0b0f14;
+      border-radius: 14px;
+      padding: 12px 0;
+      min-width: 220px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown-content:hover {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 20px;
+      color: #d1d5db;
+      font-weight: 500;
+    }
+
+    .dropdown-content a:hover {
+      background: rgba(56,189,248,0.1);
+      color: #38bdf8;
+    }
+
+    /* HEADER */
+    header {
+      background: #0d1b2a;
+      color: #fff;
+      padding: 160px 2rem 80px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+
+    header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+    header p { font-size: 1.1rem; color: #cbd5f5; max-width: 750px; margin: 0 auto; }
+
+    /* CONTACT FORM */
+    section {
+      max-width: 800px;
+      margin: 0 auto 80px;
+      padding: 40px 20px;
+    }
+
+    section h2 { font-size: 2rem; margin-bottom: 20px; text-align: center; }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    form input, form textarea {
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #111827;
+      color: #e5e7eb;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    form input:focus, form textarea:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 2px rgba(56,189,248,0.3);
+    }
+
+    form textarea { resize: vertical; min-height: 150px; }
+
+    form button {
+      padding: 14px 20px;
+      background: #38bdf8;
+      color: #111827;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    form button:hover { background: #0ea5e9; }
+
+    /* FOOTER */
+    footer {
+      padding: 60px;
+      background: #05070c;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      text-align: center;
+      font-size: 0.85rem;
+      color: #9ca3af;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 20px 30px; }
+      header { padding: 140px 2rem 60px; }
+      form { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">AFSF</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="dropdown">
+        <a href="#">Sub-Divisions</a>
+        <div class="dropdown-content">
+          <a href="iat.html">Internal Audit Team</a>
+          <a href="honor.html">Honor Guards</a>
+          <a href="tnt.html">Tactical Neutralization Team</a>
+        </div>
+      </li>
+      <li><a href="quota.html">Quota & Ranks</a></li>
+      <li><a href="directorate.html">Directorate</a></li>
+      <li><a href="halloffame.html">Hall of Fame</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Contact Us</h1>
+    <p>If you have questions, suggestions, or want to reach out to AFSF leadership, fill out the form below and we’ll get back to you as soon as possible.</p>
+  </header>
+
+  <!-- CONTACT FORM -->
+  <section>
+    <h2>Send a Message</h2>
+    <form id="contactForm">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <input type="text" name="subject" placeholder="Subject" required>
+      <textarea name="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 Roblox Air Force Security Forces
+  </footer>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const webhookURL = "https://discord.com/api/webhooks/1451533593737433159/mVjDJatkl_tVP1sdhcHbn15cfFrEIq6ZxD06e79N2Ao3VKOyXlSX_ODxOAypKHnVpCf1"; // <-- Replace with your Discord webhook
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const subject = form.subject.value.trim();
+      const message = form.message.value.trim();
+
+      if (!name || !email || !subject || !message) return;
+
+      const payload = {
+        content: `**<@&1364157761016827914> New Contact Form Submission**\n**Name:** ${name}\n**Email:** ${email}\n**Subject:** ${subject}\n**Message:** ${message}`
+      };
+
+      try {
+        const response = await fetch(webhookURL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          alert('Message sent successfully!');
+          form.reset();
+        } else {
+          alert('Failed to send message. Try again later.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Error sending message.');
+      }
+    });
+  </script>
+
+</body>
+</html>
