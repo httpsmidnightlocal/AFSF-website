@@ -4,15 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AFSF | Directorate</title>
-
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'Inter', sans-serif; background: radial-gradient(circle at top, #111827, #05070c 60%); color: #e5e7eb; line-height: 1.7; }
     a { text-decoration: none; color: inherit; }
 
-    /* ===================== NAV ===================== */
+    /* NAVBAR */
     nav {
       position: fixed;
       top: 0;
@@ -26,7 +24,7 @@
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-    .logo { font-weight: 800; letter-spacing: 2px; }
+    .logo { font-weight: 800; letter-spacing: 2px; font-size: 1.5rem; }
     nav ul { list-style: none; display: flex; gap: 32px; }
     nav li { position: relative; font-size: 0.95rem; }
     nav li::after {
@@ -71,7 +69,14 @@
       color: #38bdf8;
     }
 
-    /* ===================== HEADER ===================== */
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #38bdf8;
+    }
+
+    /* HEADER */
     .page-header {
       padding: 160px 10% 80px;
       max-width: 1000px;
@@ -81,11 +86,11 @@
     .page-header h1 { font-size: 3rem; margin-bottom: 20px; }
     .page-header p { font-size: 1.1rem; color: #cbd5f5; max-width: 750px; margin: 0 auto; }
 
-    /* ===================== SECTIONS ===================== */
+    /* SECTIONS */
     section { padding: 80px 10%; max-width: 1200px; margin: 0 auto; }
     h2 { font-size: 2rem; margin-bottom: 20px; text-align: center; }
 
-    /* ===================== DIRECTORATE GRID ===================== */
+    /* GRID */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -116,22 +121,29 @@
     }
     .card:hover::before { transform: rotate(60deg); }
     .card h3 { margin-bottom: 10px; font-size: 1.5rem; position: relative; z-index: 1; }
-    .card p { font-size: 0.95rem; color: #cbd5f5; position: relative; z-index: 1; }
-    .card span { display: block; margin-top: 10px; font-size: 0.85rem; color: #9ca3af; position: relative; z-index: 1; }
+    .card p, .card span { font-size: 0.95rem; color: #cbd5f5; position: relative; z-index: 1; }
+    .card span { display: block; margin-top: 10px; font-size: 0.85rem; color: #9ca3af; }
     .card img { display: block; margin: 12px auto; width: 140px; height: 140px; border-radius: 50%; position: relative; z-index: 1; }
 
-    /* ===================== MEDIA ===================== */
+    /* MEDIA IMAGE */
     .media { margin-top: 40px; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
     .media img { width: 100%; height: 420px; object-fit: cover; display: block; }
 
-    /* ===================== FOOTER ===================== */
+    /* FOOTER */
     footer { padding: 60px; background: #05070c; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; font-size: 0.85rem; color: #9ca3af; }
 
+    /* MOBILE */
     @media (max-width: 900px) {
-      nav { padding: 20px 30px; }
+      nav { padding: 15px 20px; }
+      nav ul { flex-direction: column; display: none; width: 100%; background: rgba(5,7,12,0.95); position: absolute; top: 70px; left: 0; }
+      nav ul.active { display: flex; }
+      nav li { text-align: center; padding: 15px 0; }
+      .menu-toggle { display: block; }
+      .page-header { padding: 140px 5% 60px; }
       .page-header h1 { font-size: 2.4rem; }
+      section { padding: 40px 5%; }
+      .media img { height: 300px; }
     }
-
   </style>
 </head>
 <body>
@@ -139,7 +151,8 @@
   <!-- NAV -->
   <nav>
     <div class="logo">AFSF</div>
-    <ul>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li class="dropdown">
@@ -200,13 +213,22 @@
     </div>
 
     <div class="media">
-      <img src="https://cdn.discordapp.com/attachments/1443892720862236763/1451524544832602192/image.png?ex=69467d13&is=69452b93&hm=1c7155fe1542b2d5b66b88a5b6697ca67c7467de62984fa0d61bc1973685c529&" alt="Directorate Operations">
+      <img src="https://cdn.discordapp.com/attachments/1443892720862236763/1451524544832602192/image.png" alt="Directorate Operations">
     </div>
   </section>
 
   <footer>
     © Roblox Air Force Security Forces
   </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>

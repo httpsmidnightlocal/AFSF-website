@@ -171,6 +171,44 @@
       color: #cbd5f5;
     }
 
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #38bdf8;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 900px) {
+      nav {
+        padding: 15px 20px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px; /* below nav */
+        left: 0;
+        width: 100%;
+        background: rgba(5,7,12,0.95);
+        flex-direction: column;
+        gap: 0;
+        display: none; /* hide by default */
+      }
+
+      .nav-links li {
+        text-align: center;
+        padding: 15px 0;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links.active {
+        display: flex; /* show menu when active */
+      }
+    }
+
     /* ===================== FOOTER ===================== */
     footer {
       padding: 60px;
@@ -186,13 +224,25 @@
       .page-header h1 { font-size: 2.4rem; }
     }
   </style>
+
+  <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 </head>
 <body>
 
   <!-- ===================== NAV ===================== -->
   <nav>
-    <div class="logo">AFSF</div>
-    <ul>
+  <div class="logo">AFSF</div>
+  <div class="menu-toggle" id="mobile-menu">
+    &#9776; <!-- hamburger icon -->
+  </div>
+    <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li class="dropdown">

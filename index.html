@@ -101,6 +101,13 @@
       color: #38bdf8;
     }
 
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #38bdf8;
+    }
+
     /* ===================== HERO ===================== */
     .hero {
       min-height: 100vh;
@@ -108,10 +115,12 @@
       align-items: center;
       padding: 0 10%;
       position: relative;
+      text-align: center;
     }
 
     .hero-content {
       max-width: 720px;
+      margin: 0 auto;
       animation: fadeUp 1.2s ease forwards;
     }
 
@@ -131,6 +140,8 @@
     .hero-buttons {
       display: flex;
       gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     .btn {
@@ -169,6 +180,7 @@
       border-radius: 20px;
       border: 1px solid rgba(255,255,255,0.05);
       transition: 0.3s ease;
+      text-align: center;
     }
 
     .info-box:hover { transform: translateY(-6px); }
@@ -178,6 +190,7 @@
     /* ===================== FEATURE GRID ===================== */
     .features {
       padding: 120px 10%;
+      text-align: center;
     }
 
     .features h2 {
@@ -185,7 +198,7 @@
       margin-bottom: 20px;
     }
 
-    .features p { max-width: 640px; margin-bottom: 60px; color: #cbd5f5; }
+    .features p { max-width: 640px; margin: 0 auto 60px; color: #cbd5f5; }
 
     .feature-grid {
       display: grid;
@@ -200,6 +213,7 @@
       border: 1px solid rgba(255,255,255,0.05);
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
 
     .feature-card::before {
@@ -215,15 +229,38 @@
 
     /* ===================== FOOTER ===================== */
     footer {
-      padding: 60px;
+      padding: 60px 10%;
       background: #05070c;
       border-top: 1px solid rgba(255,255,255,0.05);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
+      text-align: center;
       font-size: 0.85rem;
       color: #9ca3af;
+    }
+
+    /* ===================== MOBILE ===================== */
+    @media (max-width: 900px) {
+      nav {
+        padding: 20px 30px;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(5,7,12,0.95);
+        flex-direction: column;
+        gap: 0;
+        display: none;
+      }
+
+      .nav-links li { text-align: center; padding: 15px 0; }
+
+      .menu-toggle { display: block; }
+
+      .nav-links.active { display: flex; }
+
+      .hero h1 { font-size: 2.6rem; }
     }
 
     /* ===================== ANIMATIONS ===================== */
@@ -231,19 +268,15 @@
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    @media (max-width: 900px) {
-      nav { padding: 20px 30px; }
-      .hero h1 { font-size: 2.6rem; }
-    }
   </style>
 </head>
 <body>
 
-  <!-- ===================== NAV ===================== -->
+  <!-- NAV -->
   <nav>
     <div class="logo">AFSF</div>
-    <ul>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li class="dropdown">
@@ -261,7 +294,7 @@
     </ul>
   </nav>
 
-  <!-- ===================== HERO ===================== -->
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-content">
       <h1>Air Force Security Forces</h1>
@@ -273,7 +306,7 @@
     </div>
   </section>
 
-  <!-- ===================== INFO STRIP ===================== -->
+  <!-- INFO STRIP -->
   <section class="info-strip">
     <div class="info-box">
       <h3>Inspection Standards</h3>
@@ -289,10 +322,10 @@
     </div>
   </section>
 
-  <!-- ===================== FEATURES ===================== -->
+  <!-- FEATURES -->
   <section class="features">
     <h2>Why AFSF Exists</h2>
-    <p>The Air Force Security Forces is the Law Enforcement sub-division of the Air Force. They guard the Air Force Checkpoint, and AF VIPs, and ensure provide protection is provided for Air Force events.</p>
+    <p>The Air Force Security Forces is the law enforcement sub-division of the Air Force. They guard the Air Force Checkpoint, VIPs, and ensure protection is provided for all Air Force events.</p>
 
     <div class="feature-grid">
       <div class="feature-card">
@@ -310,11 +343,20 @@
     </div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
+  <!-- FOOTER -->
   <footer>
     <div>© Roblox Air Force Security Forces</div>
     <div>Designed & maintained by Chief of Security, https_midnightlocal</div>
   </footer>
+
+  <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>

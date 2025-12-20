@@ -92,27 +92,27 @@
       color: #38bdf8;
     }
 
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #38bdf8;
+    }
+
     /* ===================== HEADER ===================== */
     .page-header {
-      padding: 160px 10% 80px; max-width: 1000px; margin: 0 auto; 
+      padding: 160px 10% 80px;
       max-width: 1000px;
       margin: 0 auto;
+      text-align: center;
     }
 
-    .page-header h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-
-    .page-header p {
-      font-size: 1.1rem;
-      color: #cbd5f5;
-      max-width: 750px;
-    }
+    .page-header h1 { font-size: 3rem; margin-bottom: 20px; }
+    .page-header p { font-size: 1.1rem; color: #cbd5f5; max-width: 750px; margin: 0 auto; }
 
     /* ===================== SECTIONS ===================== */
     section {
-      padding: 80px 10%; max-width: 1200px; margin: 0 auto;
+      padding: 80px 10%;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -127,12 +127,7 @@
       border: 1px solid rgba(255,255,255,0.05);
     }
 
-    .media img {
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      display: block;
-    }
+    .media img { width: 100%; height: 420px; object-fit: cover; display: block; }
 
     /* ===================== GRID ===================== */
     .grid {
@@ -154,19 +149,8 @@
     .card:hover { transform: translateY(-6px); }
 
     .card h3 { margin-bottom: 6px; }
-
-    .card span {
-      font-size: 0.85rem;
-      color: #9ca3af;
-    }
-
-    .card img {
-        display: block;
-        margin: 12px auto;
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-    }
+    .card span { font-size: 0.85rem; color: #9ca3af; }
+    .card img { display: block; margin: 12px auto; width: 140px; height: 140px; border-radius: 50%; }
 
     /* ===================== FOOTER ===================== */
     footer {
@@ -178,19 +162,34 @@
       color: #9ca3af;
     }
 
+    /* ===================== MOBILE ===================== */
     @media (max-width: 900px) {
       nav { padding: 20px 30px; }
       .page-header h1 { font-size: 2.4rem; }
       .media img { height: 420px; object-fit: cover; display: block; }
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(5,7,12,0.95);
+        flex-direction: column;
+        gap: 0;
+        display: none;
+      }
+      .nav-links li { text-align: center; padding: 15px 0; }
+      .menu-toggle { display: block; }
+      .nav-links.active { display: flex; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===================== NAV ===================== -->
+  <!-- NAV -->
   <nav>
     <div class="logo">AFSF</div>
-    <ul>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li class="dropdown">
@@ -208,73 +207,83 @@
     </ul>
   </nav>
 
-  <!-- ===================== HEADER ===================== -->
+  <!-- HEADER -->
   <div class="page-header">
     <h1>Internal Audit Team</h1>
-    <p>The Internal Audit Team, or IAT for short, is the backbone of the Air Force Security Forces in charge of all things logistics! Their job is to handle all statistics that need to be recorded in order to keep AFSF running smoothly.</p>
-  <!-- ===================== ROLE ===================== -->
+    <p>The Internal Audit Team, or IAT, is the backbone of the Air Force Security Forces, handling all logistics, statistics, and compliance to ensure smooth operations.</p>
+  </div>
+
+  <!-- ROLE -->
   <section>
     <h2>Role & Responsibilities</h2>
-    <p>IAT ensures that all Security Forces personnel remain active, compliant, and properly complete their promotional requirements. The team operates behind the scenes to maintain structure, accuracy, and fairness.</p>
-
+    <p>IAT ensures all Security Forces personnel remain active, compliant, and complete their promotional requirements. The team operates behind the scenes to maintain structure, accuracy, and fairness.</p>
     <div class="media">
       <img src="https://cdn.discordapp.com/attachments/1443892720862236763/1451495034217037936/image.png?ex=69466197&is=69451017&hm=e476d8de3f6e9d66ea5b5d505bad05be9cbf6d75b25a1fb809d5308a110edccd&" alt="Internal Audit Team at work">
     </div>
   </section>
 
-  <!-- ===================== COMMAND ===================== -->
+  <!-- COMMAND -->
   <section>
     <h2>Command & Leadership</h2>
     <div class="grid">
       <div class="card">
         <h3>https_midnightLocal</h3>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-B62BD95D8E3814243B62B90FA2FF1C53-Png/720/720/Avatar/Webp/noFilter" alt="https_midnightLocal" >
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-B62BD95D8E3814243B62B90FA2FF1C53-Png/720/720/Avatar/Webp/noFilter" alt="https_midnightLocal">
         <span>IAT Director</span>
       </div>
       <div class="card">
         <h3>xshaendemini</h3>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-E53A77A34A1A673B2B2003C5324B6355-Png/720/720/Avatar/Webp/noFilter" alt="xshaendemini" >
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-E53A77A34A1A673B2B2003C5324B6355-Png/720/720/Avatar/Webp/noFilter" alt="xshaendemini">
         <span>Assistant Director</span>
       </div>
     </div>
   </section>
 
-  <!-- ===================== FORMER MEMBERS ===================== -->
+  <!-- FORMER MEMBERS -->
   <section>
     <h2>Former High-Ranking Members (Last 6 months)</h2>
     <div class="grid">
       <div class="card">
         <h3>harryb_nks</h3>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-0E9199DBD7FFBCBBBEB9319D8019C6CC-Png/720/720/Avatar/Webp/noFilter" alt="harryb_nks" >
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-0E9199DBD7FFBCBBBEB9319D8019C6CC-Png/720/720/Avatar/Webp/noFilter" alt="harryb_nks">
         <span>Former IAT Director</span>
       </div>
       <div class="card">
         <h3>interviuss</h3>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-6C0BB9B23079DA1C882DA78BF7B55F6B-Png/720/720/Avatar/Webp/noFilter" alt="interviuss" >
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-6C0BB9B23079DA1C882DA78BF7B55F6B-Png/720/720/Avatar/Webp/noFilter" alt="interviuss">
         <span>Former IAT Assistant Director</span>
       </div>
       <div class="card">
         <h3>232425awesome</h3>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-4BC7BE62B03339B9125ECB5E763E4BB2-Png/720/720/Avatar/Webp/noFilter" alt="232425awesome" >
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-4BC7BE62B03339B9125ECB5E763E4BB2-Png/720/720/Avatar/Webp/noFilter" alt="232425awesome">
         <span>Former IAT Deputy Director</span>
       </div>
       <div class="card">
         <h3>rrrrewed</h3>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-9134A7A9EE6483E07917E01182CCF2D1-Png/720/720/Avatar/Webp/noFilter" alt="rrrrewed" >
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-9134A7A9EE6483E07917E01182CCF2D1-Png/720/720/Avatar/Webp/noFilter" alt="rrrrewed">
         <span>Former IAT Assistant Director</span>
       </div>
       <div class="card">
         <h3>3aimless</h3>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-0513F38F08277730205577E32AD6017B-Png/720/720/Avatar/Webp/noFilter" alt="3aimless" >
-        <span>Former IAT Assistant Director <br><br> (Formerly known as KorSartex, zwkors, V_XXERM, or S_inisterly)</span>
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-0513F38F08277730205577E32AD6017B-Png/720/720/Avatar/Webp/noFilter" alt="3aimless">
+        <span>Former IAT Assistant Director<br><br>(Formerly known as KorSartex, zwkors, V_XXERM, or S_inisterly)</span>
       </div>
     </div>
   </section>
 
-  <!-- ===================== FOOTER ===================== -->
+  <!-- FOOTER -->
   <footer>
     © Roblox Air Force Security Forces
   </footer>
+
+  <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>

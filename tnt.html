@@ -92,27 +92,27 @@
       color: #38bdf8;
     }
 
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #38bdf8;
+    }
+
     /* ===================== HEADER ===================== */
     .page-header {
-      padding: 160px 10% 80px; max-width: 1000px; margin: 0 auto; 
+      padding: 160px 10% 80px;
       max-width: 1000px;
       margin: 0 auto;
+      text-align: center;
     }
 
-    .page-header h1 {
-      font-size: 3rem;
-      margin-bottom: 20px;
-    }
-
-    .page-header p {
-      font-size: 1.1rem;
-      color: #cbd5f5;
-      max-width: 750px;
-    }
+    .page-header h1 { font-size: 3rem; margin-bottom: 20px; }
+    .page-header p { font-size: 1.1rem; color: #cbd5f5; max-width: 750px; margin: 0 auto; }
 
     /* ===================== SECTIONS ===================== */
     section {
-      padding: 80px 10%; max-width: 1200px; margin: 0 auto;
+      padding: 80px 10%;
       max-width: 1200px;
       margin: 0 auto;
     }
@@ -127,12 +127,7 @@
       border: 1px solid rgba(255,255,255,0.05);
     }
 
-    .media img {
-      width: 100%;
-      height: 420px;
-      object-fit: cover;
-      display: block;
-    }
+    .media img { width: 100%; height: 420px; object-fit: cover; display: block; }
 
     /* ===================== GRID ===================== */
     .grid {
@@ -154,19 +149,8 @@
     .card:hover { transform: translateY(-6px); }
 
     .card h3 { margin-bottom: 6px; }
-
-    .card span {
-      font-size: 0.85rem;
-      color: #9ca3af;
-    }
-
-    .card img {
-        display: block;
-        margin: 12px auto;
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-    }
+    .card span { font-size: 0.85rem; color: #9ca3af; }
+    .card img { display: block; margin: 12px auto; width: 140px; height: 140px; border-radius: 50%; }
 
     /* ===================== FOOTER ===================== */
     footer {
@@ -178,10 +162,24 @@
       color: #9ca3af;
     }
 
+    /* ===================== MOBILE ===================== */
     @media (max-width: 900px) {
       nav { padding: 20px 30px; }
       .page-header h1 { font-size: 2.4rem; }
       .media img { height: 420px; object-fit: cover; display: block; }
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(5,7,12,0.95);
+        flex-direction: column;
+        gap: 0;
+        display: none;
+      }
+      .nav-links li { text-align: center; padding: 15px 0; }
+      .menu-toggle { display: block; }
+      .nav-links.active { display: flex; }
     }
   </style>
 </head>
@@ -190,7 +188,8 @@
   <!-- NAV -->
   <nav>
     <div class="logo">AFSF</div>
-    <ul>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li class="dropdown">
@@ -211,14 +210,13 @@
   <!-- HEADER -->
   <div class="page-header">
     <h1>Tactical Neutralization Team</h1>
-    <p>TNT or Tactical Neutralization Team is the most elite combat and guarding unit inside of the Air Force. They are in charge of doing missions deemed too hard for normal AFSF personnel to handle and they are in charge guarding the high executives of Air Force like General Command and STRATCOM.</p>
+    <p>The Tactical Neutralization Team (TNT) is the most elite combat and guarding unit inside AFSF. They handle missions too high-risk for normal personnel and protect high-ranking executives such as General Command and STRATCOM.</p>
   </div>
 
   <!-- ROLE -->
   <section>
     <h2>Role & Responsibilities</h2>
-    <p>The TNT handles critical missions, including threat containment at the base, tactical trainings, and advanced security operations. Team members undergo specialized training and maintain strict operational procedures at all times.</p>
-
+    <p>TNT manages critical operations, including threat containment, tactical trainings, and advanced security protocols. Members undergo specialized training and maintain strict operational standards.</p>
     <div class="media">
       <img src="https://media.discordapp.net/attachments/1436105043559452813/1451500853079969863/image.png?ex=69466702&is=69451582&hm=ed5a14bee3fdb7074392e1c0cd7287fdabc29568d5bc47641c8279250d61780c&=&format=webp&quality=lossless&width=1286&height=724" alt="TNT Operations">
     </div>
@@ -243,34 +241,44 @@
 
   <!-- FORMER MEMBERS -->
   <section>
-    <h2>Former High-Ranking Members</h2>
+    <h2>Former High-Ranking Members (Last 6 months)</h2>
     <div class="grid">
       <div class="card">
         <h3>AverydoesRobloxofc</h3>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-0E9199DBD7FFBCBBBEB9319D8019C6CC-Png/720/720/Avatar/Webp/noFilter" alt="AverydoesRobloxofc" >
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-0E9199DBD7FFBCBBBEB9319D8019C6CC-Png/720/720/Avatar/Webp/noFilter" alt="AverydoesRobloxofc">
         <span>Former TNT Commanding Officer</span>
       </div>
       <div class="card">
         <h3>iimmcbb_09</h3>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-C404C20970AF6A5E0AA6C61DA91ED885-Png/720/720/Avatar/Webp/noFilter" alt="iimmcbb_09" >
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-C404C20970AF6A5E0AA6C61DA91ED885-Png/720/720/Avatar/Webp/noFilter" alt="iimmcbb_09">
         <span>Former TNT Assistant Executive Officer</span>
       </div>
       <div class="card">
         <h3>jetdual</h3>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-548F6E2F3148ED9BC535EA17D880B22D-Png/720/720/Avatar/Webp/noFilter" alt="jetdual" >
-        <span>Former TNT Executive Officer <br><br> (Formerly known as JETTSIGHTS)</span>
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-548F6E2F3148ED9BC535EA17D880B22D-Png/720/720/Avatar/Webp/noFilter" alt="jetdual">
+        <span>Former TNT Executive Officer (Formerly known as JETTSIGHTS)</span>
       </div>
       <div class="card">
         <h3>Lolurbilly</h3>
-        <img src="https://tr.rbxcdn.com/30DAY-Avatar-1B4D60BE52B270C32F01F2AD42453759-Png/720/720/Avatar/Webp/noFilter" alt="Lolurbilly" >
+        <img src="https://tr.rbxcdn.com/30DAY-Avatar-1B4D60BE52B270C32F01F2AD42453759-Png/720/720/Avatar/Webp/noFilter" alt="Lolurbilly">
         <span>Former TNT Assistant Executive Officer</span>
       </div>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
     © Roblox Air Force Security Forces
   </footer>
+
+  <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
 
 </body>
 </html>

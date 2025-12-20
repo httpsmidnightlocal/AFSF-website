@@ -13,11 +13,12 @@
       background: radial-gradient(circle at top, #111827, #05070c 60%);
       color: #e5e7eb;
       line-height: 1.7;
+      overflow-x: hidden;
     }
 
     a { text-decoration: none; color: inherit; }
 
-    /* NAVBAR */
+    /* ===================== NAV ===================== */
     nav {
       position: fixed;
       top: 0;
@@ -38,12 +39,12 @@
       list-style: none;
       display: flex;
       gap: 32px;
+      align-items: center;
     }
 
     nav li {
       position: relative;
       font-size: 0.95rem;
-      padding-bottom: 16px;
       cursor: pointer;
     }
 
@@ -51,7 +52,7 @@
       content: "";
       position: absolute;
       left: 0;
-      bottom: 0;
+      bottom: -6px;
       width: 0;
       height: 2px;
       background: #38bdf8;
@@ -94,11 +95,18 @@
       color: #38bdf8;
     }
 
-    /* HEADER */
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #38bdf8;
+    }
+
+    /* ===================== HEADER ===================== */
     header {
       background: #0d1b2a;
       color: #fff;
-      padding: 160px 2rem 80px;
+      padding: 160px 2rem 80px; /* extra top padding for fixed nav */
       text-align: center;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
@@ -106,7 +114,7 @@
     header h1 { font-size: 2.5rem; margin-bottom: 1rem; }
     header p { font-size: 1.1rem; color: #cbd5f5; max-width: 750px; margin: 0 auto; }
 
-    /* CONTACT FORM */
+    /* ===================== CONTACT FORM ===================== */
     section {
       max-width: 800px;
       margin: 0 auto 80px;
@@ -156,7 +164,7 @@
 
     form button:hover { background: #0ea5e9; }
 
-    /* FOOTER */
+    /* ===================== FOOTER ===================== */
     footer {
       padding: 60px;
       background: #05070c;
@@ -166,10 +174,24 @@
       color: #9ca3af;
     }
 
-    @media (max-width: 768px) {
-      nav { padding: 20px 30px; }
+    /* ===================== MOBILE ===================== */
+    @media (max-width: 900px) {
+      nav { padding: 15px 20px; }
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(5,7,12,0.95);
+        flex-direction: column;
+        gap: 0;
+        display: none;
+      }
+      .nav-links li { text-align: center; padding: 15px 0; }
+      .nav-links.active { display: flex; }
+      .menu-toggle { display: block; }
       header { padding: 140px 2rem 60px; }
-      form { padding: 20px; }
+      section { padding: 20px; }
     }
   </style>
 </head>
@@ -178,7 +200,8 @@
   <!-- NAVBAR -->
   <nav>
     <div class="logo">AFSF</div>
-    <ul>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li class="dropdown">
@@ -219,17 +242,23 @@
   </footer>
 
   <script>
+    // MOBILE MENU
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // CONTACT FORM
     const form = document.getElementById('contactForm');
-    const webhookURL = "https://discord.com/api/webhooks/1451533593737433159/mVjDJatkl_tVP1sdhcHbn15cfFrEIq6ZxD06e79N2Ao3VKOyXlSX_ODxOAypKHnVpCf1"; // <-- Replace with your Discord webhook
+    const webhookURL = "https://discord.com/api/webhooks/1451533593737433159/mVjDJatkl_tVP1sdhcHbn15cfFrEIq6ZxD06e79N2Ao3VKOyXlSX_ODxOAypKHnVpCf1";
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       const subject = form.subject.value.trim();
       const message = form.message.value.trim();
-
       if (!name || !email || !subject || !message) return;
 
       const payload = {

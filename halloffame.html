@@ -11,7 +11,7 @@
 
     body {
       font-family: 'Roboto', sans-serif;
-      background: #121212; /* Dark background */
+      background: #121212;
       color: #e0e0e0;
       line-height: 1.7;
     }
@@ -95,31 +95,46 @@
       color: #38bdf8;
     }
 
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #38bdf8;
+    }
+
+    /* Mobile styles */
+    @media (max-width: 900px) {
+      nav { padding: 15px 20px; }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(5,7,12,0.95);
+        flex-direction: column;
+        gap: 0;
+        display: none;
+      }
+
+      .nav-links li { text-align: center; padding: 15px 0; }
+      .menu-toggle { display: block; }
+      .nav-links.active { display: flex; }
+    }
+
     /* ===================== HEADER ===================== */
     header {
       background: #0d1b2a;
       color: #fff;
-      padding: 160px 2rem 80px; /* extra padding for fixed navbar */
+      padding: 160px 2rem 80px;
       text-align: center;
       box-shadow: 0 4px 6px rgba(0,0,0,0.3);
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
+    header h1 { margin: 0; font-size: 2.5rem; }
+    header p { margin-top: 1rem; font-size: 1.1rem; color: #cbd5f5; }
 
-    header p {
-      margin-top: 1rem;
-      font-size: 1.1rem;
-      color: #cbd5f5;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto 2rem;
-      padding: 0 1rem;
-    }
+    .container { max-width: 1200px; margin: 0 auto 2rem; padding: 0 1rem; }
 
     .hof-member {
       display: flex;
@@ -158,12 +173,7 @@
     }
 
     @media (max-width: 768px) {
-      .hof-member {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
+      .hof-member { flex-direction: column; align-items: center; text-align: center; }
       .hof-member img { margin-bottom: 1rem; }
       nav { padding: 20px 30px; }
     }
@@ -175,7 +185,8 @@
   <!-- NAV -->
   <nav>
     <div class="logo">AFSF</div>
-    <ul>
+    <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+    <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
       <li><a href="about.html">About</a></li>
       <li class="dropdown">
@@ -193,10 +204,10 @@
     </ul>
   </nav>
 
-    <header>
-        <h1>AFSF Hall of Fame</h1>
-        <p>Celebrating the outstanding former Directorate members of AFSF who have demonstrated exceptional service, dedication, and achievements within the division. Their contributions will not be forgotten</p>
-    </header>
+  <header>
+    <h1>AFSF Hall of Fame</h1>
+    <p>Celebrating the outstanding former Directorate members of AFSF who have demonstrated exceptional service, dedication, and achievements within the division. Their contributions will not be forgotten.</p>
+  </header>
 
     <div class="container">
 
@@ -342,8 +353,14 @@
 
     </div>
 
-    <footer>
-        &copy; 2025 AFSF Hall of Fame.
-    </footer>
+  <footer>
+    &copy; 2025 AFSF Hall of Fame.
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('mobile-menu');
+    const navLinks = document.querySelector('.nav-links');
+    menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+  </script>
 </body>
 </html>
