@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AFSF | Logistics & Logs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: radial-gradient(circle at top, #111827, #05070c 60%);
+      color: #e5e7eb;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      background: rgba(5,7,12,0.65);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .logo { font-weight: 800; letter-spacing: 2px; }
+    nav ul { list-style: none; display: flex; gap: 32px; align-items: center; }
+    nav li { position: relative; font-size: 0.95rem; }
+    nav li::after { content: ""; position: absolute; left: 0; bottom: -6px; width: 0; height: 2px; background: #38bdf8; transition: width 0.3s ease; }
+    nav li:hover::after { width: 100%; }
+    .dropdown-content { position: absolute; top: 40px; left: 0; background: #0b0f14; border-radius: 14px; padding: 12px 0; min-width: 220px; opacity: 0; pointer-events: none; transform: translateY(10px); transition: 0.3s ease; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
+    .dropdown:hover .dropdown-content { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .dropdown-content a { display: block; padding: 12px 20px; font-size: 0.9rem; color: #d1d5db; }
+    .dropdown-content a:hover { background: rgba(56,189,248,0.1); color: #38bdf8; }
+    .menu-toggle { display: none; font-size: 2rem; cursor: pointer; color: #38bdf8; }
+
+    .page-header { padding: 160px 10% 60px; text-align: center; }
+    .page-header h1 { font-size: 3rem; font-weight: 800; }
+    .page-header p { max-width: 700px; margin: 20px auto 0; color: #cbd5f5; }
+
+    .log-grid {
+      padding: 0 10% 120px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .log-card {
+      background: linear-gradient(145deg, #0b0f14, #0f1623);
+      padding: 36px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: 0.3s ease;
+    }
+    .log-card:hover { transform: translateY(-6px); }
+    .log-card h3 { margin-bottom: 12px; color: #38bdf8; }
+    .log-card p { color: #cbd5f5; font-size: 0.95rem; margin-bottom: 24px; }
+    .log-card button {
+      padding: 12px 26px;
+      border-radius: 999px;
+      border: none;
+      background: #38bdf8;
+      color: #020617;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .log-card button:hover { box-shadow: 0 12px 30px rgba(56,189,248,0.4); transform: translateY(-2px); }
+
+    section[id$="-form-section"] {
+      padding: 0 10% 120px;
+      display: none;
+    }
+    .form-card { background: linear-gradient(145deg, #0b0f14, #0f1623); padding: 36px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.05); }
+    form { display: flex; flex-direction: column; gap: 16px; margin-top: 20px; }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      background: #1f2937;
+      border: 1px solid #38bdf8;
+      border-radius: 12px;
+      color: #e5e7eb;
+      font-size: 0.95rem;
+    }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: #60a5fa; box-shadow: 0 0 8px rgba(56,189,248,0.4); }
+    form button { padding: 12px 26px; border-radius: 999px; border: none; background: #38bdf8; color: #020617; font-weight: 600; cursor: pointer; transition: 0.3s ease; align-self: flex-start; }
+    form button:hover { box-shadow: 0 12px 30px rgba(56,189,248,0.4); transform: translateY(-2px); }
+
+    #drop-area {
+      border: 2px dashed #38bdf8;
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      color: #cbd5f5;
+      background: #1f2937;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #drop-area:hover { background: #111827; }
+    #drop-area input { display: none; }
+
+    footer { padding: 60px 10%; background: #05070c; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; font-size: 0.85rem; color: #9ca3af; }
+
+    @media (max-width: 900px) {
+      nav { padding: 20px 30px; }
+      .nav-links { position: absolute; top: 70px; left: 0; width: 100%; background: rgba(5,7,12,0.95); flex-direction: column; gap: 0; display: none; }
+      .nav-links li { text-align: center; padding: 15px 0; }
+      .menu-toggle { display: block; }
+      .nav-links.active { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">AFSF</div>
+  <div class="menu-toggle" id="mobile-menu">&#9776;</div>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="dropdown">
+      <a href="#">Sub-Divisions</a>
+      <div class="dropdown-content">
+        <a href="iat.html">Internal Audit Team</a>
+        <a href="honor.html">Honor Guards</a>
+        <a href="tnt.html">Tactical Neutralization Team</a>
+      </div>
+    </li>
+    <li><a href="quota.html">Quota & Ranks</a></li>
+    <li><a href="directorate.html">Directorate</a></li>
+    <li><a href="halloffame.html">Hall of Fame</a></li>
+    <li><a href="logs.html">Logistics</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="page-header">
+  <h1>Event Logistics & Notices</h1>
+  <p>Use the sections below to log events, submit quota excuses, or request inactivity notices. Ensure you fill forms <b>correctly</b>.</p>
+</section>
+
+<section class="log-grid">
+  <div class="log-card">
+    <h3>Event Logging</h3>
+    <p>Submit guarded, attended, hosted, or AFSF events for internal record keeping.</p>
+    <button onclick="openForm('event-form-section')">Open</button>
+  </div>
+  <div class="log-card">
+    <h3>Quota Excuse</h3>
+    <p>Submit an official excuse for incomplete quota during the current period.</p>
+    <button onclick="openForm('quota-form-section')">Open</button>
+  </div>
+  <div class="log-card">
+    <h3>Inactivity Notice</h3>
+    <p>Notify command of temporary inactivity, leave, or absence.</p>
+    <button onclick="openForm('inactivity-form-section')">Open</button>
+  </div>
+</section>
+
+<!-- Event Log Form -->
+<section id="event-form-section" class="form-card">
+  <div class="form-card">
+    <h3>Event Log Form</h3>
+    <form id="event-form">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your username" required />
+
+      <label for="rank">Rank:</label>
+      <select id="rank" name="rank" required>
+        <option value="" disabled selected>Select Rank</option>
+        <option value="Junior Defender">Junior Defender</option>
+        <option value="Specialized Defender">Specialized Defender</option>
+        <option value="Head Defender">Head Defender</option>
+        <option value="Chief Defender">Chief Defender</option>
+        <option value="Specialist II">Specialist II</option>
+        <option value="Specialist I">Specialist I</option>
+        <option value="Security Head Specialist">Security Head Specialist</option>
+      </select>
+
+      <div id="enlisted-fields" style="display:none;">
+        <label for="event-type">Event Type:</label>
+        <select id="event-type" name="event-type">
+          <option value="" disabled selected>Select Type</option>
+          <option value="Guarded">Guarded</option>
+          <option value="Attended">Attended</option>
+        </select>
+      </div>
+
+      <div id="staff-fields" style="display:none;">
+        <label for="hosted-type">Hosted Type:</label>
+        <select id="hosted-type" name="hosted-type">
+          <option value="" disabled selected>Select Type</option>
+          <option value="Academy">Academy</option>
+          <option value="Unit">Unit</option>
+          <option value="AFSF Event">AFSF Event</option>
+        </select>
+      </div>
+
+      <label for="description">Event Name/Description:</label>
+      <textarea id="description" name="description" rows="3" placeholder="Briefly describe the event" required></textarea>
+
+      <label for="proof">Proof (Drag & Drop Image):</label>
+      <div id="drop-area">
+        <p>Drag & Drop Image Here or Click to Upload</p>
+        <input type="file" id="proof" name="proof" accept="image/*" />
+      </div>
+
+      <button type="submit">Submit Event</button>
+    </form>
+  </div>
+</section>
+
+<!-- Quota Form -->
+<section id="quota-form-section" class="form-card">
+  <div class="form-card">
+    <h3>Quota Excuse Form</h3>
+    <form id="quota-form">
+      <label for="quota-name">Name:</label>
+      <input type="text" id="quota-name" name="quota-name" placeholder="Enter your username" required />
+
+      <label for="quota-rank">Rank:</label>
+      <select id="quota-rank" name="quota-rank" required>
+        <option value="" disabled selected>Select Rank</option>
+        <option value="Junior Defender">Junior Defender</option>
+        <option value="Specialized Defender">Specialized Defender</option>
+        <option value="Head Defender">Head Defender</option>
+        <option value="Chief Defender">Chief Defender</option>
+        <option value="Specialist II">Specialist II</option>
+        <option value="Specialist I">Specialist I</option>
+        <option value="Security Head Specialist">Security Head Specialist</option>
+      </select>
+
+      <label for="quota-reason">Reason:</label>
+      <textarea id="quota-reason" name="quota-reason" rows="3" placeholder="Explain your quota excuse" required></textarea>
+
+      <button type="submit">Submit Quota Excuse</button>
+    </form>
+  </div>
+</section>
+
+<!-- Inactivity Form -->
+<section id="inactivity-form-section" class="form-card">
+  <div class="form-card">
+    <h3>Inactivity Notice Form</h3>
+    <form id="inactivity-form">
+      <label for="inactivity-name">Name:</label>
+      <input type="text" id="inactivity-name" name="inactivity-name" placeholder="Enter your username" required />
+
+      <label for="inactivity-rank">Rank:</label>
+      <select id="inactivity-rank" name="inactivity-rank" required>
+        <option value="" disabled selected>Select Rank</option>
+        <option value="Junior Defender">Junior Defender</option>
+        <option value="Specialized Defender">Specialized Defender</option>
+        <option value="Head Defender">Head Defender</option>
+        <option value="Chief Defender">Chief Defender</option>
+        <option value="Specialist II">Specialist II</option>
+        <option value="Specialist I">Specialist I</option>
+        <option value="Security Head Specialist">Security Head Specialist</option>
+      </select>
+
+      <label for="inactivity-reason">Reason:</label>
+      <textarea id="inactivity-reason" name="inactivity-reason" rows="3" placeholder="Explain your inactivity" required></textarea>
+
+      <label for="inactivity-end">End Date:</label>
+      <input type="date" id="inactivity-end" name="inactivity-end" required />
+
+      <button type="submit">Submit Inactivity Notice</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div>© Roblox Air Force Security Forces</div>
+  <div>Designed & maintained by Chief of Security, https_midnightlocal</div>
+</footer>
+
+<script>
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzYefhyCzu9nQ-jkQlHB4zEPubTKvgcfy8N6R-0EiX9faORGeaW08iCs1oaNi2ZMk4/exec";
+
+// Mobile nav toggle
+const menuToggle = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.nav-links');
+menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+// Only one form visible at a time
+function openForm(formId) {
+  const forms = ['event-form-section','quota-form-section','inactivity-form-section'];
+  forms.forEach(id => document.getElementById(id).style.display = 'none');
+  document.getElementById(formId).style.display = 'block';
+}
+
+// Event log rank selection
+const rankSelect = document.getElementById('rank');
+const enlistedFields = document.getElementById('enlisted-fields');
+const staffFields = document.getElementById('staff-fields');
+rankSelect.addEventListener('change', () => {
+  const rank = rankSelect.value;
+  if(['Junior Defender','Specialized Defender','Head Defender','Chief Defender'].includes(rank)) {
+    enlistedFields.style.display = 'block';
+    staffFields.style.display = 'none';
+  } else if(['Specialist II','Specialist I','Security Head Specialist'].includes(rank)) {
+    enlistedFields.style.display = 'none';
+    staffFields.style.display = 'block';
+  } else {
+    enlistedFields.style.display = 'none';
+    staffFields.style.display = 'none';
+  }
+});
+
+// Drag & Drop
+const dropArea = document.getElementById('drop-area');
+const fileInput = document.getElementById('proof');
+dropArea.addEventListener('click', () => fileInput.click());
+dropArea.addEventListener('dragover', e => { e.preventDefault(); dropArea.style.background = '#111827'; });
+dropArea.addEventListener('dragleave', () => { dropArea.style.background = '#1f2937'; });
+dropArea.addEventListener('drop', e => {
+  e.preventDefault();
+  fileInput.files = e.dataTransfer.files;
+  dropArea.style.background = '#1f2937';
+});
+
+// Submit forms to Google Sheet
+async function submitForm(formType, data) {
+  data.formType = formType;
+  try {
+    const res = await fetch(WEB_APP_URL, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const result = await res.json();
+    if(result.status === 'success') alert('Submission successful!');
+    else alert('Error: ' + result.message);
+  } catch(err) { alert('Submission failed: ' + err.message); }
+}
+
+// Event form
+document.getElementById('event-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const data = {
+    name: document.getElementById('name').value,
+    rank: document.getElementById('rank').value,
+    eventType: document.getElementById('event-type')?.value || '',
+    hostedType: document.getElementById('hosted-type')?.value || '',
+    description: document.getElementById('description').value,
+    proof: document.getElementById('proof').files[0]?.name || ''
+  };
+  submitForm('event', data);
+  e.target.reset();
+});
+
+// Quota form
+document.getElementById('quota-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const data = {
+    name: document.getElementById('quota-name').value,
+    rank: document.getElementById('quota-rank').value,
+    reason: document.getElementById('quota-reason').value
+  };
+  submitForm('quota', data);
+  e.target.reset();
+});
+
+// Inactivity form
+document.getElementById('inactivity-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const data = {
+    name: document.getElementById('inactivity-name').value,
+    rank: document.getElementById('inactivity-rank').value,
+    reason: document.getElementById('inactivity-reason').value,
+    endDate: document.getElementById('inactivity-end').value
+  };
+  submitForm('inactivity', data);
+  e.target.reset();
+});
+</script>
+</body>
+</html>
